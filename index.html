@@ -3,57 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Women's AI Pack</title>
+  <title>Women's AI Pack — Витрина</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--tg-theme-bg-color, #ffffff);
+      background-color: var(--tg-theme-bg-color, #f7f9fb);
       color: var(--tg-theme-text-color, #222222);
       margin: 0;
-      padding: 24px 16px;
+      padding: 16px;
       text-align: center;
     }
     h1 {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: var(--tg-theme-hint-color, #666666);
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background-color: var(--tg-theme-secondary-bg-color, #ffffff);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .card-icon {
       font-size: 24px;
       margin-bottom: 8px;
     }
-    p {
-      font-size: 15px;
-      line-height: 1.5;
-      color: var(--tg-theme-hint-color, #666666);
-      margin-bottom: 24px;
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--tg-theme-hint-color, #777777);
+      margin-bottom: 12px;
     }
     .btn {
       display: block;
       width: 100%;
       box-sizing: border-box;
-      padding: 14px 20px;
+      padding: 12px 16px;
       background-color: var(--tg-theme-button-color, #0088cc);
       color: var(--tg-theme-button-text-color, #ffffff);
       text-decoration: none;
-      border-radius: 12px;
+      border-radius: 10px;
       font-weight: 600;
-      font-size: 16px;
-      margin-bottom: 12px;
+      font-size: 14px;
+      text-align: center;
     }
     .btn-secondary {
       background-color: transparent;
       color: var(--tg-theme-button-color, #0088cc);
       border: 1px solid var(--tg-theme-button-color, #0088cc);
+      margin-top: 8px;
     }
   </style>
 </head>
 <body>
-  <h1>Women's AI Pack
-    👋</h1>
-  <p>Добро пожаловать! Здесь вы найдете полезные материалы, гайды и анонсы по искусственному интеллекту.</p>
-  
-  <!-- Кнопка связи с вами -->
-  <a href="https://t.me/rnovos" class="btn">💬 Связаться / Написать мне</a>
 
-  <!-- Кнопка перехода в ваш канал -->
-  <a href="https://t.me/womens_ai_pack" class="btn btn-secondary">📢 Перейти в канал</a>
+  <h1>Women's AI Pack 🎨</h1>
+  <div class="subtitle">AI-дизайн, готовые комплекты и гайды</div>
+
+  <div class="grid">
+    
+    <!-- Карточка 1 -->
+    <div class="card">
+      <div class="card-icon">📐</div>
+      <div class="card-title">Дизайн-системы с AI</div>
+      <div class="card-desc">Готовые структуры, UI-киты и фреймворки, созданные и оптимизированные с помощью нейросетей.</div>
+      <a href="https://t.me/rnovos?text=Привет!%20Хочу%20узнать%20подробнее%20про%20Дизайн-системы" class="btn">Заказать / Узнать цену</a>
+    </div>
+
+    <!-- Карточка 2 -->
+    <div class="card">
+      <div class="card-icon">✨</div>
+      <div class="card-title">Brand Kit (Фирменный стиль)</div>
+      <div class="card-desc">Полный визуальный пак для вашего бренда: логотипы, шрифты и концепция от AI.</div>
+      <a href="https://t.me/rnovos?text=Привет!%20Интересует%20Brand%20Kit" class="btn">Заказать / Узнать цену</a>
+    </div>
+
+    <!-- Карточка 3 -->
+    <div class="card">
+      <div class="card-icon">🎬</div>
+      <div class="card-title">Обложки для YouTube</div>
+      <div class="card-desc">Кликабельные и яркие превью для видео, сгенерированные и доработанные в нейросетях.</div>
+      <a href="https://t.me/rnovos?text=Привет!%20Нужны%20обложки%20для%20YouTube" class="btn">Заказать / Узнать цену</a>
+    </div>
+
+    <!-- Карточка 4 -->
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <div class="card-title">AI Цветовые палитры</div>
+      <div class="card-desc">Уникальные цветовые сочетания и палитры под настроение и сферу вашего проекта.</div>
+      <a href="https://t.me/rnovos?text=Привет!%20Хочу%20заказать%20Цветовые%20палитры" class="btn">Заказать / Узнать цену</a>
+    </div>
+
+    <!-- Карточка 5 -->
+    <div class="card">
+      <div class="card-icon">📚</div>
+      <div class="card-title">Гайды и Промпты</div>
+      <div class="card-desc">Пошаговые инструкции и готовые промпты для работы с AI-инструментами дизайна.</div>
+      <a href="https://t.me/rnovos?text=Привет!%20Интересуют%20гайды%20и%20промпты" class="btn">Заказать / Узнать цену</a>
+    </div>
+
+  </div>
+
+  <!-- Кнопки перехода в канал и личку -->
+  <a href="https://t.me/womens_ai_pack" class="btn btn-secondary">📢 Перейти в канал Women's AI Pack</a>
 
   <script>
     Telegram.WebApp.ready();
