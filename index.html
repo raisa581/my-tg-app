@@ -14,21 +14,9 @@
       padding: 16px;
       text-align: center;
     }
-    h1 {
-      font-size: 22px;
-      margin-bottom: 6px;
-    }
-    .subtitle {
-      font-size: 14px;
-      color: var(--tg-theme-hint-color, #666666);
-      margin-bottom: 20px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
+    h1 { font-size: 22px; margin-bottom: 6px; }
+    .subtitle { font-size: 14px; color: var(--tg-theme-hint-color, #666666); margin-bottom: 20px; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
     .card {
       background-color: var(--tg-theme-secondary-bg-color, #ffffff);
       border-radius: 12px;
@@ -37,20 +25,9 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       border: 1px solid rgba(0,0,0,0.06);
     }
-    .card-icon {
-      font-size: 24px;
-      margin-bottom: 8px;
-    }
-    .card-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .card-desc {
-      font-size: 13px;
-      color: var(--tg-theme-hint-color, #777777);
-      margin-bottom: 12px;
-    }
+    .card-icon { font-size: 24px; margin-bottom: 8px; }
+    .card-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .card-desc { font-size: 13px; color: var(--tg-theme-hint-color, #777777); margin-bottom: 12px; }
     .btn {
       display: block;
       width: 100%;
@@ -58,11 +35,12 @@
       padding: 12px 16px;
       background-color: var(--tg-theme-button-color, #0088cc);
       color: var(--tg-theme-button-text-color, #ffffff);
-      text-decoration: none;
       border-radius: 10px;
       font-weight: 600;
       font-size: 14px;
       text-align: center;
+      border: none;
+      cursor: pointer;
     }
     .btn-secondary {
       background-color: transparent;
@@ -78,56 +56,52 @@
   <div class="subtitle">AI-дизайн, готовые комплекты и гайды</div>
 
   <div class="grid">
-    
-    <!-- Карточка 1 -->
     <div class="card">
       <div class="card-icon">📐</div>
       <div class="card-title">Дизайн-системы с AI</div>
-      <div class="card-desc">Готовые структуры, UI-киты и фреймворки, созданные и оптимизированные с помощью нейросетей.</div>
-      <a href="https://t.me/designMiniBot" class="btn">Заказать / Узнать цену</a>
+      <div class="card-desc">Готовые структуры, UI-киты и фреймворки, созданные с помощью нейросетей.</div>
+      <button onclick="openTg('designMiniBot')" class="btn">Заказать / Узнать цену</button>
     </div>
 
-    <!-- Карточка 2 -->
     <div class="card">
       <div class="card-icon">✨</div>
       <div class="card-title">Brand Kit (Фирменный стиль)</div>
-      <div class="card-desc">Полный визуальный пак для вашего бренда: логотипы, шрифты и концепция от AI.</div>
-      <a href="https://t.me/designMiniBot" class="btn">Заказать / Узнать цену</a>
+      <div class="card-desc">Полный визуальный пак для вашего бренда: логотипы, шрифты и концепция.</div>
+      <button onclick="openTg('designMiniBot')" class="btn">Заказать / Узнать цену</button>
     </div>
 
-    <!-- Карточка 3 -->
     <div class="card">
       <div class="card-icon">🎬</div>
       <div class="card-title">Обложки для YouTube</div>
-      <div class="card-desc">Кликабельные и яркие превью для видео, сгенерированные и доработанные в нейросетях.</div>
-      <a href="https://t.me/designMiniBot" class="btn">Заказать / Узнать цену</a>
+      <div class="card-desc">Кликабельные и яркие превью для видео.</div>
+      <button onclick="openTg('designMiniBot')" class="btn">Заказать / Узнать цену</button>
     </div>
 
-    <!-- Карточка 4 -->
     <div class="card">
       <div class="card-icon">🎨</div>
       <div class="card-title">AI Цветовые палитры</div>
-      <div class="card-desc">Уникальные цветовые сочетания и палитры под настроение и сферу вашего проекта.</div>
-      <a href="https://t.me/designMiniBot" class="btn">Заказать / Узнать цену</a>
+      <div class="card-desc">Уникальные цветовые сочетания под сферу вашего проекта.</div>
+      <button onclick="openTg('designMiniBot')" class="btn">Заказать / Узнать цену</button>
     </div>
 
-    <!-- Карточка 5 -->
     <div class="card">
       <div class="card-icon">📚</div>
       <div class="card-title">Гайды и Промпты</div>
-      <div class="card-desc">Пошаговые инструкции и готовые промпты для работы с AI-инструментами дизайна.</div>
-      <a href="https://t.me/designMiniBot" class="btn">Заказать / Узнать цену</a>
+      <div class="card-desc">Пошаговые инструкции и готовые промпты.</div>
+      <button onclick="openTg('designMiniBot')" class="btn">Заказать / Узнать цену</button>
       <a href="./Презентация для косметологов 1.mp4" target="_blank" class="btn btn-secondary" style="margin-top: 8px;">🎬 Посмотреть презентацию</a>
     </div>
-
   </div>
 
-  <!-- Кнопка перехода в канал -->
-  <a href="https://t.me/womens_ai_pack" class="btn btn-secondary">📢 Перейти в канал Women's AI Pack</a>
+  <button onclick="openTg('womens_ai_pack')" class="btn btn-secondary">📢 Перейти в канал Women's AI Pack</button>
 
   <script>
     Telegram.WebApp.ready();
     Telegram.WebApp.expand();
+
+    function openTg(username) {
+      Telegram.WebApp.openTelegramLink('https://t.me/' + username);
+    }
   </script>
 </body>
 </html>
