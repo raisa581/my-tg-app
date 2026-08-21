@@ -1,106 +1,126 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Women's AI Pack — Витрина</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Шаблоны лендингов от Раи</title>
+  
+  <!-- ШАГ 0: Подключение SDK Telegram (всегда в head) -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  
+  <!-- Tailwind CSS для стилей -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
   <style>
+    /* Нативные цвета Telegram (автоподстройка под тему) */
+    :root {
+      --bg: var(--tg-theme-bg-color, #ffffff);
+      --text: var(--tg-theme-text-color, #000000);
+      --hint: var(--tg-theme-hint-color, #999999);
+      --button: var(--tg-theme-button-color, #2481cc);
+      --button-text: var(--tg-theme-button-text-color, #ffffff);
+      --secondary-bg: var(--tg-theme-secondary-bg-color, #f1f1f1);
+    }
     body {
+      background: var(--bg);
+      color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--tg-theme-bg-color, #f7f9fb);
-      color: var(--tg-theme-text-color, #222222);
       margin: 0;
-      padding: 16px;
-      text-align: center;
+      padding: 16px 16px 100px 16px; /* Отступ снизу для главной кнопки */
     }
-    h1 { font-size: 22px; margin-bottom: 6px; }
-    .subtitle { font-size: 14px; color: var(--tg-theme-hint-color, #666666); margin-bottom: 20px; }
-    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
     .card {
-      background-color: var(--tg-theme-secondary-bg-color, #ffffff);
-      border-radius: 12px;
-      padding: 16px;
-      text-align: left;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      border: 1px solid rgba(0,0,0,0.06);
+      background: var(--secondary-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.1s;
     }
-    .card-icon { font-size: 24px; margin-bottom: 8px; }
-    .card-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-    .card-desc { font-size: 13px; color: var(--tg-theme-hint-color, #777777); margin-bottom: 12px; }
-    .btn {
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
-      padding: 12px 16px;
-      background-color: var(--tg-theme-button-color, #0088cc);
-      color: var(--tg-theme-button-text-color, #ffffff);
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 14px;
-      text-align: center;
-      border: none;
-      cursor: pointer;
-    }
-    .btn-secondary {
-      background-color: transparent;
-      color: var(--tg-theme-button-color, #0088cc);
-      border: 1px solid var(--tg-theme-button-color, #0088cc);
-      margin-top: 8px;
-    }
+    .card:active { transform: scale(0.97); }
   </style>
 </head>
 <body>
 
-  <h1>Women's AI Pack 🎨</h1>
-  <div class="subtitle">AI-дизайн, готовые комплекты и гайды</div>
+  <!-- Шапка с приветствием -->
+  <header class="mb-6">
+    <h1 class="text-2xl font-bold">Привет, <span id="username">гость</span> 👋</h1>
+    <p style="color: var(--hint)" class="text-sm mt-1">Премиум шаблоны лендингов</p>
+  </header>
+  
+  <!-- Каталог шаблонов -->
+  <section class="grid grid-cols-2 gap-4" id="catalog">
+    <!-- Карточки генерируются через JS ниже -->
+  </section>
 
-  <div class="grid">
-    <div class="card">
-      <div class="card-icon">📐</div>
-      <div class="card-title">Дизайн-системы с AI</div>
-      <div class="card-desc">Готовые структуры, UI-киты и фреймворки, созданные с помощью нейросетей.</div>
-      <button onclick="openTg('designMiniBot')" class="btn">Заказать / Узнать цену</button>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">✨</div>
-      <div class="card-title">Brand Kit (Фирменный стиль)</div>
-      <div class="card-desc">Полный визуальный пак для вашего бренда: логотипы, шрифты и концепция.</div>
-      <button onclick="openTg('designMiniBot')" class="btn">Заказать / Узнать цену</button>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">🎬</div>
-      <div class="card-title">Обложки для YouTube</div>
-      <div class="card-desc">Кликабельные и яркие превью для видео.</div>
-      <button onclick="openTg('designMiniBot')" class="btn">Заказать / Узнать цену</button>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">🎨</div>
-      <div class="card-title">AI Цветовые палитры</div>
-      <div class="card-desc">Уникальные цветовые сочетания под сферу вашего проекта.</div>
-      <button onclick="openTg('designMiniBot')" class="btn">Заказать / Узнать цену</button>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">📚</div>
-      <div class="card-title">Гайды и Промпты</div>
-      <div class="card-desc">Пошаговые инструкции и готовые промпты.</div>
-      <button onclick="openTg('designMiniBot')" class="btn">Заказать / Узнать цену</button>
-      <a href="./Презентация для косметологов 1.mp4" target="_blank" class="btn btn-secondary" style="margin-top: 8px;">🎬 Посмотреть презентацию</a>
-    </div>
-  </div>
-
-  <button onclick="openTg('womens_ai_pack')" class="btn btn-secondary">📢 Перейти в канал Women's AI Pack</button>
-
+  <!-- ШАГ 1, 2, 3: Логика Telegram (всегда в конце body) -->
   <script>
-    Telegram.WebApp.ready();
-    Telegram.WebApp.expand();
+    // --- ШАГ 1: Инициализация ---
+    const tg = window.Telegram.WebApp;
+    tg.ready();          // Сообщаем Telegram, что приложение загрузилось
+    tg.expand();         // Разворачиваем на весь экран
 
-    function openTg(username) {
-      Telegram.WebApp.openTelegramLink('https://t.me/' + username);
+    // --- ШАГ 2: Данные пользователя ---
+    const user = tg.initDataUnsafe?.user;
+    if (user) {
+      document.getElementById('username').textContent = user.first_name;
+    }
+
+    // --- ШАГ 3: Данные и кнопки ---
+    // Замените @raya_designer на ваш реальный юзернейм в Telegram
+    const MY_USERNAME = 'raya_designer'; 
+
+    const templates = [
+      { id: 1, title: 'SaaS Pro', price: 150, emoji: '🚀' },
+      { id: 2, title: 'Agency', price: 200, emoji: '💼' },
+      { id: 3, title: 'Portfolio', price: 100, emoji: '🎨' }
+    ];
+
+    const catalog = document.getElementById('catalog');
+    
+    templates.forEach(t => {
+      const card = document.createElement('div');
+      card.className = 'card p-4 cursor-pointer';
+      card.innerHTML = `
+        <div class="text-5xl mb-3 text-center">${t.emoji}</div>
+        <div class="font-semibold text-sm">${t.title}</div>
+        <div class="mt-2 flex justify-between items-center">
+          <span class="text-xs font-bold px-2 py-1 rounded" style="background: var(--button); color: var(--button-text);">⭐ ${t.price}</span>
+        </div>
+      `;
+      
+      // При клике на карточку
+      card.onclick = () => {
+        tg.HapticFeedback.selectionChanged(); // Вибрация (тренд UX)
+        
+        // Настраиваем главную нижнюю кнопку Telegram
+        tg.MainButton.setText(`Купить "${t.title}" за ⭐${t.price}`);
+        tg.MainButton.show();
+        
+        // Обработка клика по главной кнопке
+        tg.MainButton.onClick(() => {
+          handlePurchase(t);
+        });
+      };
+      
+      catalog.appendChild(card);
+    });
+
+    // Логика покупки / сбора лида
+    function handlePurchase(template) {
+      tg.HapticFeedback.notificationOccurred('success');
+      
+      // ВАРИАНТ А: Сбор лида (открывает чат с вами с готовым текстом)
+      const message = `Привет! Хочу купить шаблон "${template.title}" за ⭐${template.price}. Как оплатить?`;
+      const link = `https://t.me/${MY_USERNAME}?text=${encodeURIComponent(message)}`;
+      
+      // Открываем чат
+      tg.openTelegramLink(link);
+      
+      /* 
+      // ВАРИАНТ Б: Реальная оплата Stars (раскомментировать, когда будет ссылка на инвойс от бота)
+      // const invoiceUrl = "https://t.me/your_bot?start=pay_123"; // Эту ссылку должен давать ваш бот
+      // tg.openInvoice(invoiceUrl, (status) => {
+      //   if (status === 'paid') alert('Оплачено!');
+      // });
+      */
     }
   </script>
 </body>
