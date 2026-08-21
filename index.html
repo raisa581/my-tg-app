@@ -3,16 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>Шаблоны лендингов от Раи</title>
-  
-  <!-- ШАГ 0: Подключение SDK Telegram (всегда в head) -->
+  <title>Портфолио Раи</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  
-  <!-- Tailwind CSS для стилей -->
   <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
-    /* Нативные цвета Telegram (автоподстройка под тему) */
     :root {
       --bg: var(--tg-theme-bg-color, #ffffff);
       --text: var(--tg-theme-text-color, #000000);
@@ -26,102 +21,138 @@
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       margin: 0;
-      padding: 16px 16px 100px 16px; /* Отступ снизу для главной кнопки */
+      padding: 16px 16px 100px 16px;
     }
     .card {
       background: var(--secondary-bg);
       border-radius: 16px;
       overflow: hidden;
       transition: transform 0.1s;
+      cursor: pointer;
     }
     .card:active { transform: scale(0.97); }
+    
+    .category-tab {
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .category-tab.active {
+      background: var(--button);
+      color: var(--button-text);
+    }
+    .category-tab:not(.active) {
+      background: var(--secondary-bg);
+      color: var(--hint);
+    }
   </style>
 </head>
 <body>
 
-  <!-- Шапка с приветствием -->
-  <header class="mb-6">
+  <!-- Шапка -->
+  <header class="mb-4">
     <h1 class="text-2xl font-bold">Привет, <span id="username">гость</span> 👋</h1>
-    <p style="color: var(--hint)" class="text-sm mt-1">Премиум шаблоны лендингов</p>
+    <p style="color: var(--hint)" class="text-sm mt-1">Дизайн и лендинги</p>
   </header>
-  
-  <!-- Каталог шаблонов -->
-  <section class="grid grid-cols-2 gap-4" id="catalog">
-    <!-- Карточки генерируются через JS ниже -->
-  </section>
 
-  <!-- ШАГ 1, 2, 3: Логика Telegram (всегда в конце body) -->
+  <!-- Переключатель категорий -->
+  <div class="flex gap-2 mb-6 overflow-x-auto pb-2" id="categoryTabs">
+    <div class="category-tab active" data-category="landing">🎯 Landing</div>
+    <div class="category-tab" data-category="snapshots">📸 Snapshots</div>
+    <div class="category-tab" data-category="pitch">📊 Pitch Deck</div>
+  </div>
+
+  <!-- Каталог -->
+  <section class="grid grid-cols-2 gap-4" id="catalog"></section>
+
+  <!-- JavaScript (Мышцы приложения) -->
   <script>
-    // --- ШАГ 1: Инициализация ---
     const tg = window.Telegram.WebApp;
-    tg.ready();          // Сообщаем Telegram, что приложение загрузилось
-    tg.expand();         // Разворачиваем на весь экран
+    tg.ready();
+    tg.expand();
 
-    // --- ШАГ 2: Данные пользователя ---
     const user = tg.initDataUnsafe?.user;
     if (user) {
       document.getElementById('username').textContent = user.first_name;
     }
 
-    // --- ШАГ 3: Данные и кнопки ---
-    // Замените @raya_designer на ваш реальный юзернейм в Telegram
-    const MY_USERNAME = 'raya_designer'; 
+    const MY_USERNAME = 'rnovos';
 
-    const templates = [
-      { id: 1, title: 'SaaS Pro', price: 150, emoji: '🚀' },
-      { id: 2, title: 'Agency', price: 200, emoji: '💼' },
-      { id: 3, title: 'Portfolio', price: 100, emoji: '🎨' }
-    ];
+    // Шаблоны (цены убраны)
+    const allTemplates = {
+      landing: [
+        { id: 3, title: 'Portfolio', emoji: '🎨', category: 'landing' }
+      ],
+      snapshots: [
+        { id: 5, title: 'Instagram Post', emoji: '📱', category: 'snapshots' },
+        { id: 6, title: 'Story Pack', emoji: '📲', category: 'snapshots' },
+        { id: 7, title: 'Banner Set', emoji: '🎪', category: 'snapshots' }
+      ],
+      pitch: [
+        { id: 8, title: 'Startup Pitch', emoji: '💡', category: 'pitch' },
+        { id: 9, title: 'Investor Deck', emoji: '💰', category: 'pitch' },
+        { id: 10, title: 'Product Launch', emoji: '🚀', category: 'pitch' }
+      ]
+    };
 
+    let currentCategory = 'landing';
     const catalog = document.getElementById('catalog');
-    
-    templates.forEach(t => {
-      const card = document.createElement('div');
-      card.className = 'card p-4 cursor-pointer';
-      card.innerHTML = `
-        <div class="text-5xl mb-3 text-center">${t.emoji}</div>
-        <div class="font-semibold text-sm">${t.title}</div>
-        <div class="mt-2 flex justify-between items-center">
-          <span class="text-xs font-bold px-2 py-1 rounded" style="background: var(--button); color: var(--button-text);">⭐ ${t.price}</span>
-        </div>
-      `;
+    const tabs = document.querySelectorAll('.category-tab');
+
+    function renderCatalog(category) {
+      catalog.innerHTML = '';
+      const templates = allTemplates[category] || [];
       
-      // При клике на карточку
-      card.onclick = () => {
-        tg.HapticFeedback.selectionChanged(); // Вибрация (тренд UX)
+      templates.forEach(t => {
+        const card = document.createElement('div');
+        card.className = 'card p-4';
+        // Убрали блок с ценой
+        card.innerHTML = `
+          <div class="text-5xl mb-3 text-center">${t.emoji}</div>
+          <div class="font-semibold text-sm">${t.title}</div>
+        `;
         
-        // Настраиваем главную нижнюю кнопку Telegram
-        tg.MainButton.setText(`Купить "${t.title}" за ⭐${t.price}`);
-        tg.MainButton.show();
+        card.onclick = () => {
+          tg.HapticFeedback.selectionChanged();
+          tg.MainButton.setText(`Заказать "${t.title}"`);
+          tg.MainButton.show();
+          
+          tg.MainButton.offClick();
+          tg.MainButton.onClick(() => handleLead(t));
+        };
         
-        // Обработка клика по главной кнопке
-        tg.MainButton.onClick(() => {
-          handlePurchase(t);
-        });
-      };
-      
-      catalog.appendChild(card);
+        catalog.appendChild(card);
+      });
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tg.HapticFeedback.selectionChanged();
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentCategory = tab.dataset.category;
+        renderCatalog(currentCategory);
+        tg.MainButton.hide();
+      });
     });
 
-    // Логика покупки / сбора лида
-    function handlePurchase(template) {
+    function handleLead(template) {
       tg.HapticFeedback.notificationOccurred('success');
-      
-      // ВАРИАНТ А: Сбор лида (открывает чат с вами с готовым текстом)
-      const message = `Привет! Хочу купить шаблон "${template.title}" за ⭐${template.price}. Как оплатить?`;
+      const message = `Привет! Хочу заказать шаблон "${template.title}" (${getCategoryName(template.category)}). Расскажите подробнее.`;
       const link = `https://t.me/${MY_USERNAME}?text=${encodeURIComponent(message)}`;
-      
-      // Открываем чат
       tg.openTelegramLink(link);
-      
-      /* 
-      // ВАРИАНТ Б: Реальная оплата Stars (раскомментировать, когда будет ссылка на инвойс от бота)
-      // const invoiceUrl = "https://t.me/your_bot?start=pay_123"; // Эту ссылку должен давать ваш бот
-      // tg.openInvoice(invoiceUrl, (status) => {
-      //   if (status === 'paid') alert('Оплачено!');
-      // });
-      */
     }
+
+    function getCategoryName(cat) {
+      const names = { landing: 'Landing', snapshots: 'Snapshots', pitch: 'Pitch Deck' };
+      return names[cat] || cat;
+    }
+
+    renderCatalog('landing');
   </script>
 </body>
 </html>
