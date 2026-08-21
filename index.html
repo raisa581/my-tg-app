@@ -63,8 +63,6 @@
       font-weight: 600;
       font-size: 14px;
       text-align: center;
-      border: none;
-      cursor: pointer;
     }
     .btn-secondary {
       background-color: transparent;
@@ -86,7 +84,7 @@
       <div class="card-icon">📐</div>
       <div class="card-title">Дизайн-системы с AI</div>
       <div class="card-desc">Готовые структуры, UI-киты и фреймворки, созданные и оптимизированные с помощью нейросетей.</div>
-      <button onclick="openProduct('design_systems')" class="btn">Заказать / Узнать цену</button>
+      <a href="https://t.me/designMiniBot" class="btn">Заказать / Узнать цену</a>
     </div>
 
     <!-- Карточка 2 -->
@@ -94,7 +92,7 @@
       <div class="card-icon">✨</div>
       <div class="card-title">Brand Kit (Фирменный стиль)</div>
       <div class="card-desc">Полный визуальный пак для вашего бренда: логотипы, шрифты и концепция от AI.</div>
-      <button onclick="openProduct('brand_kit')" class="btn">Заказать / Узнать цену</button>
+      <a href="https://t.me/designMiniBot" class="btn">Заказать / Узнать цену</a>
     </div>
 
     <!-- Карточка 3 -->
@@ -102,7 +100,7 @@
       <div class="card-icon">🎬</div>
       <div class="card-title">Обложки для YouTube</div>
       <div class="card-desc">Кликабельные и яркие превью для видео, сгенерированные и доработанные в нейросетях.</div>
-      <button onclick="openProduct('youtube_covers')" class="btn">Заказать / Узнать цену</button>
+      <a href="https://t.me/designMiniBot" class="btn">Заказать / Узнать цену</a>
     </div>
 
     <!-- Карточка 4 -->
@@ -110,7 +108,7 @@
       <div class="card-icon">🎨</div>
       <div class="card-title">AI Цветовые палитры</div>
       <div class="card-desc">Уникальные цветовые сочетания и палитры под настроение и сферу вашего проекта.</div>
-      <button onclick="openProduct('color_palettes')" class="btn">Заказать / Узнать цену</button>
+      <a href="https://t.me/designMiniBot" class="btn">Заказать / Узнать цену</a>
     </div>
 
     <!-- Карточка 5 -->
@@ -118,7 +116,7 @@
       <div class="card-icon">📚</div>
       <div class="card-title">Гайды и Промпты</div>
       <div class="card-desc">Пошаговые инструкции и готовые промпты для работы с AI-инструментами дизайна.</div>
-      <button onclick="openProduct('guides_prompts')" class="btn">Заказать / Узнать цену</button>
+      <a href="https://t.me/designMiniBot" class="btn">Заказать / Узнать цену</a>
       <a href="./Презентация для косметологов 1.mp4" target="_blank" class="btn btn-secondary" style="margin-top: 8px;">🎬 Посмотреть презентацию</a>
     </div>
 
@@ -130,12 +128,6 @@
   <script>
     Telegram.WebApp.ready();
     Telegram.WebApp.expand();
-
-    function openProduct(productCode) {
-      const botUsername = "designMiniBot"; 
-      Telegram.WebApp.openTelegramLink(`https://t.me/${botUsername}?start=${productCode}`);
-      Telegram.WebApp.close();
-    }
   </script>
 </body>
 </html>
