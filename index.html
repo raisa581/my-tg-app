@@ -132,10 +132,9 @@
     Telegram.WebApp.expand();
 
     function openProduct(productCode) {
-      // Перенаправляем пользователя в диалог с ботом @designMiniBot и передаем метку товара
       const botUsername = "designMiniBot"; 
       Telegram.WebApp.openTelegramLink(`https://t.me/${botUsername}?start=${productCode}`);
-      Telegram.WebApp.close(); // Закрываем Mini App после клика
+      Telegram.WebApp.close();
     }
   </script>
 </body>
