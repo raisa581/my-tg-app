@@ -26,17 +26,13 @@
     .card {
       background: var(--secondary-bg);
       border-radius: 16px;
-      overflow: hidden;
-      transition: transform 0.1s;
-      cursor: pointer;
       padding: 20px;
       text-align: center;
+      transition: transform 0.1s;
+      cursor: pointer;
     }
     .card:active { transform: scale(0.97); }
-    .card-emoji {
-      font-size: 64px;
-      margin-bottom: 12px;
-    }
+    .card-emoji { font-size: 64px; margin-bottom: 12px; }
     
     .category-tab {
       padding: 10px 16px;
@@ -66,7 +62,7 @@
 
   <div class="flex gap-2 mb-6 overflow-x-auto pb-2" id="categoryTabs">
     <div class="category-tab active" data-category="landing">🎯 Landing</div>
-    <div class="category-tab" data-category="snapshots">📸 Snapshots</div>
+    <div class="category-tab" data-category="snapshots"> Snapshots</div>
     <div class="category-tab" data-category="pitch">📊 Pitch Deck</div>
   </div>
 
@@ -82,7 +78,6 @@
       document.getElementById('username').textContent = user.first_name;
     }
 
-    // ВАЖНО: Ваш ник в Telegram (без @)
     const MY_USERNAME = 'rnovos';
 
     const allTemplates = {
@@ -94,7 +89,7 @@
         { id: 3, title: 'Обложка YouTube', emoji: '', category: 'snapshots' }
       ],
       pitch: [
-        { id: 4, title: 'Запуск продукта', emoji: '🚀', category: 'pitch' },
+        { id: 4, title: 'Запуск продукта', emoji: '', category: 'pitch' },
         { id: 5, title: 'Simple Pitch Deck', emoji: '📊', category: 'pitch' },
         { id: 6, title: 'Startup Pitch Desk', emoji: '💡', category: 'pitch' }
       ]
@@ -144,8 +139,6 @@
       tg.HapticFeedback.notificationOccurred('success');
       const message = `Привет! Хочу заказать "${template.title}" (${getCategoryName(template.category)}). Расскажите подробнее.`;
       const link = `https://t.me/${MY_USERNAME}?text=${encodeURIComponent(message)}`;
-      
-      // Открываем чат с вами
       tg.openTelegramLink(link);
     }
 
