@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -29,12 +29,13 @@
       overflow: hidden;
       transition: transform 0.1s;
       cursor: pointer;
+      padding: 20px;
+      text-align: center;
     }
     .card:active { transform: scale(0.97); }
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
+    .card-emoji {
+      font-size: 64px;
+      margin-bottom: 12px;
     }
     
     .category-tab {
@@ -81,51 +82,21 @@
       document.getElementById('username').textContent = user.first_name;
     }
 
+    // ВАЖНО: Ваш ник в Telegram (без @)
     const MY_USERNAME = 'rnovos';
 
-    // Ваши 6 работ с изображениями
     const allTemplates = {
       landing: [
-        { 
-          id: 1, 
-          title: 'Портфолио', 
-          image: 'portfolio-cover.jpg', 
-          category: 'landing' 
-        }
+        { id: 1, title: 'Портфолио', emoji: '🎨', category: 'landing' }
       ],
       snapshots: [
-        { 
-          id: 2, 
-          title: 'Fashion Collection', 
-          image: 'fashion-collection-ad.jpg', 
-          category: 'snapshots' 
-        },
-        { 
-          id: 3, 
-          title: 'Обложка YouTube', 
-          image: 'overcome-fears-cover.jpg', 
-          category: 'snapshots' 
-        }
+        { id: 2, title: 'Fashion Collection', emoji: '👗', category: 'snapshots' },
+        { id: 3, title: 'Обложка YouTube', emoji: '', category: 'snapshots' }
       ],
       pitch: [
-        { 
-          id: 4, 
-          title: 'Запуск продукта', 
-          image: 'product-launch-strategy.jpg', 
-          category: 'pitch' 
-        },
-        { 
-          id: 5, 
-          title: 'Simple Pitch Deck', 
-          image: 'simple-pitch-deck.jpg', 
-          category: 'pitch' 
-        },
-        { 
-          id: 6, 
-          title: 'Startup Pitch Desk', 
-          image: 'startup-pitch-desk.jpg', 
-          category: 'pitch' 
-        }
+        { id: 4, title: 'Запуск продукта', emoji: '🚀', category: 'pitch' },
+        { id: 5, title: 'Simple Pitch Deck', emoji: '📊', category: 'pitch' },
+        { id: 6, title: 'Startup Pitch Desk', emoji: '💡', category: 'pitch' }
       ]
     };
 
@@ -141,10 +112,8 @@
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
-          <img src="images/${t.image}" alt="${t.title}" loading="lazy">
-          <div class="p-3">
-            <div class="font-semibold text-sm">${t.title}</div>
-          </div>
+          <div class="card-emoji">${t.emoji}</div>
+          <div class="font-semibold text-sm">${t.title}</div>
         `;
         
         card.onclick = () => {
@@ -175,6 +144,8 @@
       tg.HapticFeedback.notificationOccurred('success');
       const message = `Привет! Хочу заказать "${template.title}" (${getCategoryName(template.category)}). Расскажите подробнее.`;
       const link = `https://t.me/${MY_USERNAME}?text=${encodeURIComponent(message)}`;
+      
+      // Открываем чат с вами
       tg.openTelegramLink(link);
     }
 
