@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -31,6 +31,11 @@
       cursor: pointer;
     }
     .card:active { transform: scale(0.97); }
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
     
     .category-tab {
       padding: 10px 16px;
@@ -53,23 +58,19 @@
 </head>
 <body>
 
-  <!-- Шапка -->
   <header class="mb-4">
     <h1 class="text-2xl font-bold">Привет, <span id="username">гость</span> 👋</h1>
     <p style="color: var(--hint)" class="text-sm mt-1">Дизайн и лендинги</p>
   </header>
 
-  <!-- Переключатель категорий -->
   <div class="flex gap-2 mb-6 overflow-x-auto pb-2" id="categoryTabs">
     <div class="category-tab active" data-category="landing">🎯 Landing</div>
     <div class="category-tab" data-category="snapshots">📸 Snapshots</div>
     <div class="category-tab" data-category="pitch">📊 Pitch Deck</div>
   </div>
 
-  <!-- Каталог -->
   <section class="grid grid-cols-2 gap-4" id="catalog"></section>
 
-  <!-- JavaScript (Мышцы приложения) -->
   <script>
     const tg = window.Telegram.WebApp;
     tg.ready();
@@ -82,20 +83,49 @@
 
     const MY_USERNAME = 'rnovos';
 
-    // Шаблоны (цены убраны)
+    // Ваши 6 работ с изображениями
     const allTemplates = {
       landing: [
-        { id: 3, title: 'Portfolio', emoji: '🎨', category: 'landing' }
+        { 
+          id: 1, 
+          title: 'Портфолио', 
+          image: 'portfolio-cover.jpg', 
+          category: 'landing' 
+        }
       ],
       snapshots: [
-        { id: 5, title: 'Instagram Post', emoji: '📱', category: 'snapshots' },
-        { id: 6, title: 'Story Pack', emoji: '📲', category: 'snapshots' },
-        { id: 7, title: 'Banner Set', emoji: '🎪', category: 'snapshots' }
+        { 
+          id: 2, 
+          title: 'Fashion Collection', 
+          image: 'fashion-collection-ad.jpg', 
+          category: 'snapshots' 
+        },
+        { 
+          id: 3, 
+          title: 'Обложка YouTube', 
+          image: 'overcome-fears-cover.jpg', 
+          category: 'snapshots' 
+        }
       ],
       pitch: [
-        { id: 8, title: 'Startup Pitch', emoji: '💡', category: 'pitch' },
-        { id: 9, title: 'Investor Deck', emoji: '💰', category: 'pitch' },
-        { id: 10, title: 'Product Launch', emoji: '🚀', category: 'pitch' }
+        { 
+          id: 4, 
+          title: 'Запуск продукта', 
+          image: 'product-launch-strategy.jpg', 
+          category: 'pitch' 
+        },
+        { 
+          id: 5, 
+          title: 'Simple Pitch Deck', 
+          image: 'simple-pitch-deck.jpg', 
+          category: 'pitch' 
+        },
+        { 
+          id: 6, 
+          title: 'Startup Pitch Desk', 
+          image: 'startup-pitch-desk.jpg', 
+          category: 'pitch' 
+        }
       ]
     };
 
@@ -109,11 +139,12 @@
       
       templates.forEach(t => {
         const card = document.createElement('div');
-        card.className = 'card p-4';
-        // Убрали блок с ценой
+        card.className = 'card';
         card.innerHTML = `
-          <div class="text-5xl mb-3 text-center">${t.emoji}</div>
-          <div class="font-semibold text-sm">${t.title}</div>
+          <img src="images/${t.image}" alt="${t.title}" loading="lazy">
+          <div class="p-3">
+            <div class="font-semibold text-sm">${t.title}</div>
+          </div>
         `;
         
         card.onclick = () => {
@@ -142,7 +173,7 @@
 
     function handleLead(template) {
       tg.HapticFeedback.notificationOccurred('success');
-      const message = `Привет! Хочу заказать шаблон "${template.title}" (${getCategoryName(template.category)}). Расскажите подробнее.`;
+      const message = `Привет! Хочу заказать "${template.title}" (${getCategoryName(template.category)}). Расскажите подробнее.`;
       const link = `https://t.me/${MY_USERNAME}?text=${encodeURIComponent(message)}`;
       tg.openTelegramLink(link);
     }
